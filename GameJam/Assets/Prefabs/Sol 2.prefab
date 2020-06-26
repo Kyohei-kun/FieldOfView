@@ -56,6 +56,14 @@ MonoBehaviour:
   deplacements:
   - 0.125
   - -0.125
+  - 0.5
+  - -0.5
+  isTheGround: 0
+  deplacementsGround:
+  - 0.0625
+  - -0.0625
+  - 0.03125
+  - -0.03125
 --- !u!1001 &182137501852379575
 PrefabInstance:
   m_ObjectHideFlags: 0
