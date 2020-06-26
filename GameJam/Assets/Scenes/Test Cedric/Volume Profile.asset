@@ -111,8 +111,8 @@ MonoBehaviour:
     m_Value: 1
     min: 0
   indirectDiffuseIntensity:
-    m_OverrideState: 0
-    m_Value: 1
+    m_OverrideState: 1
+    m_Value: 1.4
     min: 0
 --- !u!114 &-4145545106075774949
 MonoBehaviour:
@@ -202,6 +202,7 @@ MonoBehaviour:
   - {fileID: 3092881545321965323}
   - {fileID: 568498494359350260}
   - {fileID: -4145545106075774949}
+  - {fileID: -4516136985636434561}
 --- !u!114 &568498494359350260
 MonoBehaviour:
   m_ObjectHideFlags: 3
