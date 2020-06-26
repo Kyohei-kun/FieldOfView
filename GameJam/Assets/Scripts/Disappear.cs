@@ -7,7 +7,7 @@ public class Disappear : MonoBehaviour
     [SerializeField] private int numberOfVertex;
     public Vector3[] vertices;
     private Camera cam;
-
+    private bool canDisappear;
 
     private void Start()
     {
@@ -17,11 +17,17 @@ public class Disappear : MonoBehaviour
         {
             vertices[i] = transform.TransformPoint(vertices[i]);
         }
+        canDisappear = false;
     }
 
     private void Update()
     {
-        if (!IsObjectVisibleByCamera())
+        if (IsObjectVisibleByCamera())
+        {
+            canDisappear = true;
+        }
+
+        if (!IsObjectVisibleByCamera() && canDisappear)
         {
             Destroy(this.gameObject);
         }
