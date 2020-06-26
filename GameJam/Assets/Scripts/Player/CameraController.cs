@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform cameraHolder;
-
     [SerializeField] private float mouseSensitivity;
-    [SerializeField] [Range(-90, 90)] private float minAngle, maxAngle;
-    private float xRotation = 0f;
+    [SerializeField] [Range(-90, 0)] private float minAngle;
+    [SerializeField] [Range(0, 90)] private float maxAngle;
 
-    private Transform playerBody;
+    private Transform cameraHolder;
+
+    private float xRotation = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        cameraHolder = transform.Find("CameraHolder");
         Cursor.lockState = CursorLockMode.Locked;
     }
 
