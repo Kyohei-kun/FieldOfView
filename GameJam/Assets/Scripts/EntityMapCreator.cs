@@ -10,7 +10,11 @@ public class EntityMapCreator : MonoBehaviour
 {
     [SerializeField] private GameObject preform;
 
+    [Tooltip("A cocher sur la preform sert de sol")]
+    [SerializeField] private bool isTheGround;
+
     [Space] [SerializeField] private List<GameObject> prefabsCubes;
+
 
     private MoveMapEntity moveMapEntity;
 
@@ -30,7 +34,9 @@ public class EntityMapCreator : MonoBehaviour
 
         Destroy(preform);
 
+        temp.GetComponent<MoveMapEntity>().IsTheGround = isTheGround;
         //Une fois créée on lui demande de bouger individuellement ses cubes.
         temp.GetComponent<MoveMapEntity>().Movecubes();
+        
     }
 }

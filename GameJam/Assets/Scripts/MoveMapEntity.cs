@@ -6,10 +6,20 @@ using System.Linq;
 
 public class MoveMapEntity : MonoBehaviour
 {
-    [Header("Deplacements possible par chaque cube dans sont axe Z")]
-    [SerializeField] List<float> deplacements;
+    [Tooltip("Déplacements possible par chaque cubes sur sont axe Z")]
+    [SerializeField] private List<float> deplacements;
+
+
+    [Tooltip("A cocher sur la preform sert de sol")]
+    [SerializeField] private bool isTheGround;
+    
+    
+    [Tooltip("Déplacements possible par chaque cubes sur sont axe Z Si il s'agit du sol")]
+    [SerializeField] private List<float> deplacementsGround;
+
 
     private List<Transform> childrens;
+
 
 
     /// <summary>
@@ -22,10 +32,12 @@ public class MoveMapEntity : MonoBehaviour
 
         Vector3 position = Vector3.zero;
 
+        
         foreach (Transform cube  in childrens)
         {
             position = cube.position;
-            position += (cube.forward * deplacements[ToolBox.RandomBetween(0, deplacements.Count - 1)]);
+            int index = ToolBox.RandomBetween(0, (isTheGround? deplacementsGround.Count: deplacements.Count)- 1);
+            position += (cube.forward * (isTheGround? deplacementsGround[index] : deplacements[index]));
             cube.position = position;
         }
     }
@@ -38,4 +50,5 @@ public class MoveMapEntity : MonoBehaviour
         childrens = gameObject.GetComponentsInChildren<Transform>().ToList<Transform>();
         childrens.RemoveAt(0); // Remove le gmaeobject parent (celui ou on est actuellement) de la list
     }
+    public bool IsTheGround { get => isTheGround; set => isTheGround = value; }
 }
