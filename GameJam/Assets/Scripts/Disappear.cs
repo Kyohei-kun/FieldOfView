@@ -8,6 +8,8 @@ public class Disappear : MonoBehaviour
     public Vector3[] vertices;
     private Camera cam;
     private bool canDisappear;
+    private bool isUnderPlayer;
+
 
     private void Start()
     {
@@ -27,7 +29,7 @@ public class Disappear : MonoBehaviour
             canDisappear = true;
         }
 
-        if (!IsObjectVisibleByCamera() && canDisappear)
+        if (!IsObjectVisibleByCamera() && canDisappear && !isUnderPlayer)
         {
             Destroy(this.gameObject);
         }
@@ -53,4 +55,6 @@ public class Disappear : MonoBehaviour
 
         return visible;
     }
+    
+    public bool IsUnderPlayer { get => isUnderPlayer; set => isUnderPlayer = value; }
 }
