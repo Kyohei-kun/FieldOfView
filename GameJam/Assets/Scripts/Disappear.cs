@@ -5,11 +5,14 @@ using UnityEngine;
 public class Disappear : MonoBehaviour
 {
     [SerializeField] private int numberOfVertex;
-    public Vector3[] vertices;
+    private Vector3[] vertices;
     private Camera cam;
     private bool canDisappear;
     private bool isUnderPlayer;
 
+
+    private MeshRenderer mesh;
+    private BoxCollider collider;
 
     private void Start()
     {
@@ -20,6 +23,9 @@ public class Disappear : MonoBehaviour
             vertices[i] = transform.TransformPoint(vertices[i]);
         }
         canDisappear = false;
+
+        mesh = GetComponent<MeshRenderer>();
+        collider = GetComponent<BoxCollider>();
     }
 
     private void Update()
@@ -31,7 +37,7 @@ public class Disappear : MonoBehaviour
 
         if (!IsObjectVisibleByCamera() && canDisappear && !isUnderPlayer)
         {
-            Destroy(this.gameObject);
+            ObjectVisibleState(false);
         }
     }
 
@@ -55,6 +61,12 @@ public class Disappear : MonoBehaviour
 
         return visible;
     }
-    
+
+    public void ObjectVisibleState(bool visibility)
+    {
+        mesh.enabled = visibility;
+        collider.enabled = visibility;
+    }
+
     public bool IsUnderPlayer { get => isUnderPlayer; set => isUnderPlayer = value; }
 }
